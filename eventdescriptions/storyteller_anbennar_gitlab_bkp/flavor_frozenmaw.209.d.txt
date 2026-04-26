@@ -1,1 +1,0 @@
-Don't look at me, I'm a hidden event. If you're seeing me after loading a save, don't worry about it. That's a known Vanilla EU4 bug.

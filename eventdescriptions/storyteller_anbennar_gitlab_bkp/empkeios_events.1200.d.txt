@@ -1,1 +1,0 @@
-This event should be hidden! This is a controller event that calculates slave production and initializes the variables for that count. Actual rewards are given in other events.

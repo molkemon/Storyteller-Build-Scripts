@@ -1,1 +1,0 @@
-A herald from their country's lord, [From.Monarch.GetName], has arrived, suggesting a marriage between them and our monarch, [Root.Monarch.GetName].

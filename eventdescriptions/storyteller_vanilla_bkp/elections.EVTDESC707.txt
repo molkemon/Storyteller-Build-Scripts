@@ -1,1 +1,0 @@
-We have chosen to replace [From.Monarch.GetName] as Governor of [From.GetName]. Whom shall we appoint in their place?

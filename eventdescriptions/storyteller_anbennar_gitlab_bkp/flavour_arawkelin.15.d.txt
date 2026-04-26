@@ -1,2 +1,0 @@
-Please provide the text containing the dynamic localisation tags. I need the text to be able to perform the requested replacements and alterations.
-Once you provide the text, I will reply *only* with the altered text, following all your instructions regarding dynamic localisation, pronouns, locations, and temporal tags.

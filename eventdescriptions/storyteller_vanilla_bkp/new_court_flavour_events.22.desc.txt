@@ -1,1 +1,0 @@
-While the noble class is somewhat perturbed at the idea of a foreigner working for their monarch, our advisor, a representative of the [Root.advisor_culture.GetCultureName] culture, has been widely praised for bringing fresh ideas and practices to the realm. It seems that we can still learn a thing or two from foreign learning.

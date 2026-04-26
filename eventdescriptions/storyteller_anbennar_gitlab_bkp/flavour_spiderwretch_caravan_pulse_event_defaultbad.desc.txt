@@ -1,1 +1,0 @@
-This one spawns 1 of the 3 bad events by default. If relations are good then it's a 50/50 between good and bad. This event should be hidden.

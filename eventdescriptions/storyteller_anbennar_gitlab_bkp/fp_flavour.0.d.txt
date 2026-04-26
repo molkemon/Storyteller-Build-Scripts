@@ -1,1 +1,0 @@
-This event should be hidden. If you are seeing this, that means you loaded a game right as it was doing its thing, and paradox, in their infinite wisdom, decided you should see this HIDDEN event.

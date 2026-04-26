@@ -1,3 +1,0 @@
-Available Modification Slots: 3
-Total available Modifications or Modules: 5
-Since we cannot Expand Infrastructure, module effects will instead gain greater effects at every development interval of 15.

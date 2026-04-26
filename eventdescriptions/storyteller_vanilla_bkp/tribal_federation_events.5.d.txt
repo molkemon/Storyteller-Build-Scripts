@@ -1,1 +1,0 @@
-The people of that province have been drawn to the persuasive leaders of the neighboring theocracy of [neighboring_feudal_theocracy.GetName]. Like many parts of our realm, this area has always been home to different faiths, but this development troubles our ruler.

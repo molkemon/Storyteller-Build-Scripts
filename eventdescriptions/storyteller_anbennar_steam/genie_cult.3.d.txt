@@ -1,1 +1,0 @@
-Powering an Incantation requires a certain level of Cult Power. Depending on their effects and power level, each Incantation requires 1, 2, 3 or 4 Cult power points to be available. Your current Cult Power is sufficient.

@@ -1,1 +1,0 @@
-A rebel army led by a pretender is marching towards the capital of their country. Family members of the deposed monarch of their country have managed to gather up a rather large following and are now trying to overthrow their ruler, the lord they call [From.Monarch.GetName].

@@ -1,1 +1,0 @@
-The chaos of our last monarch's reign is now behind us, and the new monarch, the ruler of the [Root.Monarch.Dynasty.GetName] dynasty, has placed the nation on a new course. The lord wishes to refound the state by moving its capital a few miles to Bangkok and undertaking a thorough administrative reform. Should we follow their wishes?

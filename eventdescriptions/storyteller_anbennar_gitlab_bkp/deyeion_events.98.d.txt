@@ -1,1 +1,0 @@
-If you're seeing this, please contact the nearest authorities at #Missions Domain. The current independence movement modifier value is [Root.G56_independence_movement_variable.getValue]. The temporary modifier value is [Root.G56_independence_movement_variable_temp.getValue].

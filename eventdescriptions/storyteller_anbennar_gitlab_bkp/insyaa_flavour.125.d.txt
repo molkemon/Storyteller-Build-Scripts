@@ -1,7 +1,0 @@
-2538 years, 7 months, 3 days ago: "Was tasked with obtaining a flower that does not grow in this region. Travel outside the realm was necessary. The master was not satisfied."
-
-2538 years, 6 months, 4 days ago: "Continued working on the amplifier line. The actuators were replaced with temporary force conjuration devices, which caused interference in the circuitry connecting to the transmutation shapers. The shaper modules will need to be replaced entirely, as at least two crashes have occurred. Unfortunately, evocation actuators will have to be used for now, as using another temporary solution just to get the parts out quickly introduces more problems in the short term. I dislike implementing temporary fixes on top of other temporary fixes just so we can run tests on the machine further down the line when that one is also not ready for even a cold run due to several temporary solutions being introduced to appease the ego of an incompetent-"
-
-2538 years, 6 months, 3 days ago: "The master did not approve of the solution. The alarm severity was lowered across the board instead."
-
-2538 years, 5 months, 1 day ago: "Was made to grate cheese in a way that was most unpleasant."

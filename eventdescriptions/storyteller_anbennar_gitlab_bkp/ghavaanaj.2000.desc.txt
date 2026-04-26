@@ -1,5 +1,0 @@
-The herd consists of many animals.
-Construction Cost: Goods produced in grain and livestock provinces:
-Physical training yields a bonus.
-Mental training yields a bonus.
-There is a chance for progress, focusing on training.

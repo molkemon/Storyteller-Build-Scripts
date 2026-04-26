@@ -1,1 +1,0 @@
-This is a background event to convert country modifiers into government reforms, you shouldn't be seeing this

@@ -1,1 +1,0 @@
-Paradox never fixed the bug where hidden events appear if you load the game on that day.

@@ -1,1 +1,0 @@
-A great leader has risen in [Root.GetName], a [Root.GetAdjective] ruler who will bring prosperity and peace to their country. Their lord, [Root.Monarch.GetName], is a wise and just ruler, loved by their people. With their strong leadership, [Root.GetName] will become a dominant force in the realm, and their domain will flourish.
