@@ -26,7 +26,8 @@ If you do not have available endpoints, or if you want a setup highly optimized 
 
 **0. The general Workflow:**
 
-- You have 6 PowerShell scripts in this pipeline. To create the mod, you have to first setup the configuration blocks for all scripts, and then execute the scripts one after the other.
+- Download or clone the entire repo. Put it wherever you like on your hard drive
+- You have 6 PowerShell scripts in this pipeline. To create a mod, you have to first setup the configuration blocks for all scripts, and then execute the scripts one after the other.
 - Only execute in PowerShell 7, one of the scripts absolutely requires it, and all of the scripts are way faster in 7.
   
 - For Script 2 you need an available LLM endpoint, for Script 3 you need a TTS endpoint. Setup on how to run those locally for free and highly optimized for speed are further below.
@@ -39,8 +40,10 @@ If you do not have available endpoints, or if you want a setup highly optimized 
 - Script 4 creates new versions of the selected mods event files that injects additional effects into every single event in game to make the play button appear when the event triggers in game.
 - Script 5 creates a custom_gui file for the play button with the required logic to play the corret sound effect for whichever event triggered it showing up.
 - Script 6 creates localisation for the play button (so it has a tooltip) and updates the selected mods topbar.gui file to support the play button. If the selected mod does not have a topbar.gui file, the vanilla one is used.
-
 - Scripts 2-4 should be save to "pause" (via killing them with ctr-c) as all of them should resume where they left off on further execution. The other scripts don't take long enough for this to be a concern. 
+- All your mod files are now assembled in to build subfolder of wherever you extracted the files too.
+- ⚠️ To finish your mod you need to create a descriptor.mod file. You can reference the .mod file of the mod you are voicing, or my own Storyteller .mod files for Vanilla or Anbennar on how that should look like. For more information on this step see here: https://eu4.paradoxwikis.com/Mod_structure#.mod_file
+- You can now copy the entire mod folder from the build folder to your EU4 mod folder and add it to your playset.
 
 
 **1. Always use PowerShell 7:**
@@ -66,7 +69,7 @@ Every script is divided into two sections: `CONFIGURATION` and `SCRIPT CODE`.
 3. Paste it over the `CONFIGURATION` block of the other 5 scripts.
 4. **DO NOT** change anything below the `# --- Script Code ---` marker.
 
-> NOTE: If you already have LLM and TTS endpoints available to you, you are good to go now and can ignore anything below.
+> ⚠️ NOTE: If you already have LLM and TTS endpoints available to you, you are good to go now and can ignore anything below.
 > The below instructions will create endpoints which are highly optimized for speed, but there is like a million other ways you can go about this. You could use cloud providers, runpods, or use premade suites that run on Windows and have easier installs, like e.g. ollama for the LLM part.
 > As already mentioned above, executing the below steps requires signifcant amounts of disk space and should probably not be attempted if you have absolutely no idea what you are doing. 
 
