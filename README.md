@@ -15,7 +15,7 @@ If you do not have available endpoints, or if you want a setup highly optimized 
 * With a 3090 RTX, I managed to do all of Anbennar (over 20k events) in 14 hours. Vanilla only has 6k events and the events also have way less text, so it can be done in approx. 3-4 hours.
 
 ## Hardware Requirements
-* This will probably only work with nVidia GPUs out of the box. I'm sure it can be made to work somehow with AMD or even Intel, but I wouldn't know how. 
+* **GPU Vendor:** NVIDIA ONLY. This pipeline explicitly relies on CUDA 12.1. AMD or Intel GPUs will not work out of the box and require a significantly more painful, entirely manual installation process.
 * **LLM Inference:** Minimum **12 GB VRAM** (You may need to use a smaller model than `gemma4:e4b` if you are at the minimum).
 * **TTS Inference:** Minimum **6 GB VRAM**. 
 * *Note: More VRAM speeds up the LLM, but doesn't significantly speed up TTS. However, raw GPU tensor power will speed up both.*
