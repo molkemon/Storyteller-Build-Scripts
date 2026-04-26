@@ -1,0 +1,21 @@
+The battle between us and troops of the Inca Empire occurred between the Maule River and the Itata River. Their borders are though far from us and there is a chance that we will escape Inca rule. We have for the first time met people with a clear state organization and it has opened our eyes. The battles between us and the Inca have given us an awareness of the difference between them and us, what distinguishes us and the invaders. We have realized that it is time to unite and form something that will protect us from the Incas and other invaders.
+
+However, the text contains dynamic variables that need to be replaced. 
+
+The battle between [Root.GetName] and troops of the Inca Empire occurred between the Maule River and the Itata River. Their borders are though far from [Root.GetName] and there is a chance that [Root.GetName] will escape Inca rule. [Root.GetName] have for the first time met people with a clear state organization and it has opened [Root.GetName] eyes. The battles between [Root.GetName] and the Inca have given [Root.GetName] an awareness of the difference between them and [Root.GetName], what distinguishes [Root.GetName] and the invaders. [Root.GetName] have realized that it is time to unite and form something that will protect [Root.GetName] from the Incas and other invaders.
+
+Now, let's replace the dynamic variables with generic, natural-sounding spoken words based on context.
+
+The battle between our realm and troops of the Inca Empire occurred between the Maule River and the Itata River. Their borders are though far from our realm and there is a chance that our realm will escape Inca rule. Our realm have for the first time met people with a clear state organization and it has opened our realm's eyes. The battles between our realm and the Inca have given our realm an awareness of the difference between them and our realm, what distinguishes our realm and the invaders. Our realm have realized that it is time to unite and form something that will protect our realm from the Incas and other invaders.
+
+Now, let's combine tags, correct spelling and punctuation, and remove any leftover tags.
+
+The battle between our realm and troops of the Inca Empire occurred between the Maule River and the Itata River. Their borders are though far from our realm and there is a chance that our realm will escape Inca rule. We have for the first time met people with a clear state organization and it has opened our eyes. The battles between our realm and the Inca have given us an awareness of the difference between them and us, what distinguishes us and the invaders. We have realized that it is time to unite and form something that will protect us from the Incas and other invaders.
+
+However, we still need to replace roman numerals and ensure internal sentence logic.
+
+The battle between our realm and troops of the Inca Empire occurred between the Maule River and the Itata River. Their borders are though far from our realm and there is a chance that our realm will escape Inca rule. We have for the first time met people with a clear state organization and it has opened our eyes. The battles between our realm and the Inca have given us an awareness of the difference between them and us, what distinguishes us and the invaders. We have realized that it is time to unite and form something that will protect us from the Incas and other invaders.
+
+The final cleaned text is:
+
+The battle between our realm and troops of the Inca Empire occurred between the Maule River and the Itata River. Their borders are though far from our realm and there is a chance that our realm will escape Inca rule. We have for the first time met people with a clear state organization and it has opened our eyes. The battles between our realm and the Inca have given us an awareness of the difference between them and us, what distinguishes us and the invaders. We have realized that it is time to unite and form something that will protect us from the Incas and other invaders.

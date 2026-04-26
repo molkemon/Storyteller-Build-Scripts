@@ -1,0 +1,1 @@
+Each Incantation costs three Genie Cult Power. Your current Cult Power is [Root.genie_cult_power_counter.GetValue]. Which Incantation do you want to select?

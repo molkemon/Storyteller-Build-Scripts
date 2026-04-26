@@ -1,0 +1,3 @@
+My lord, we have grave news! Our most respected advisor, [Root.Mil_Advisor.GetName], is not what they seem! During an inspection of the archive, the chief archivist found a strange document. This document explains that our advisor was not born in a noble household but as the child of a slave and courtmaid. After the mother died, they were adopted by the maid's employers, a noble couple who were unable to get children on their own.
+
+What should we do with this information?

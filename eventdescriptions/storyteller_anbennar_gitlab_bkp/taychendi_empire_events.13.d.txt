@@ -1,0 +1,9 @@
+Can we do it? Well… a slave passed the lord a series of papers—she rolled them out on the desk, revealing a series of city plans. Here is the location or supposed location of the Zopedan cores in each of the Kheions—we did a little investigating before Degakheion was agreed upon, just in case, but now that we know what they look like, how you can scrap your way to finding them…? Well, Arpedifér’s core is the only one that still eludes us, but we'll get there—other than that the only problem comes in clearing out the areas we need to excavate.
+
+[Root.Monarch.GetName] nodded as [Root.Monarch.GetSheHe] stared at the papers on the meeting table. The moment [Root.Monarch.GetSheHe] laid [Root.Monarch.GetHerHis] eyes on the final figures from the excavation of Degakheion’s windward, [Root.Monarch.GetHerHis] mind was set. The wealth they had dug up from those cities was simply astronomical… how could [Root.Monarch.GetSheHe] resist the opportunity to replicate that success six times over?
+
+"My lord?" Denariatam looked up. "Respectfully, I think you're asking the wrong questions." The Vustarin Matriarch put Oktikheion's city-plan to one side, and unravelled a map of the Cleaved Sea. "It isn't whether we've prepared to excavate—it's if you've prepared for what comes next. The Kheions will rise in revolt… and if I had to guess, so would all Kheionai, everywhere. And the world will look on us like—well, we'd be pariahs for a time, I'm sure."
+
+The lord furrowed [Root.Monarch.GetSheHe] brow. "I didn't expect you to question my morality."
+
+"Not your morality," the Vustarin pointed at Empkeios on the map, "your troop deployments. Threzaranthi Uyasmar would do more good in Oktikheion than Empkeios, and the Rakulacans… well, let's just say this is going to take a lot of bloodshed, and they've proved good at it."

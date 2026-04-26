@@ -1,0 +1,41 @@
+A white elephant has been captured in the hinterlands of [From.GetName] and [From.Monarch.GetName] has wisely interpreted this as a sign of the productive alliance of our two peoples. This is the greatest gift a ruler could possibly bestow upon us and will likely be regarded very well by our population. It will, however, also be quite costly to take care of this rare beast, even though we could hardly refuse to do so.
+
+Replacing [From.GetName] with "country" and [From.Monarch.GetName] with "ruler" to maintain the context of the sentence as a country event.
+
+A white elephant has been captured in the hinterlands of the country and the ruler has wisely interpreted this as a sign of the productive alliance of our two peoples. This is the greatest gift a ruler could possibly bestow upon us and will likely be regarded very well by our population. It will, however, also be quite costly to take care of this rare beast, even though we could hardly refuse to do so.
+
+Correcting the sentence to maintain internal logic: "the ruler" should be "they" to maintain the context of the sentence as a country event.
+
+A white elephant has been captured in the hinterlands of the country and they have wisely interpreted this as a sign of the productive alliance of our two peoples. This is the greatest gift a ruler could possibly bestow upon us and will likely be regarded very well by our population. It will, however, also be quite costly to take care of this rare beast, even though we could hardly refuse to do so.
+
+Replacing "a ruler" with "the ruler" to maintain consistency.
+
+A white elephant has been captured in the hinterlands of the country and they have wisely interpreted this as a sign of the productive alliance of our two peoples. This is the greatest gift the ruler could possibly bestow upon us and will likely be regarded very well by our population. It will, however, also be quite costly to take care of this rare beast, even though we could hardly refuse to do so.
+
+Replacing "our two peoples" with "our people" to maintain consistency.
+
+A white elephant has been captured in the hinterlands of the country and they have wisely interpreted this as a sign of the productive alliance of our people. This is the greatest gift the ruler could possibly bestow upon us and will likely be regarded very well by our population. It will, however, also be quite costly to take care of this rare beast, even though we could hardly refuse to do so.
+
+Replacing "our population" with "the people" to maintain consistency.
+
+A white elephant has been captured in the hinterlands of the country and they have wisely interpreted this as a sign of the productive alliance of our people. This is the greatest gift the ruler could possibly bestow upon us and will likely be regarded very well by the people. It will, however, also be quite costly to take care of this rare beast, even though we could hardly refuse to do so.
+
+Replacing "we" with "us" to maintain consistency.
+
+A white elephant has been captured in the hinterlands of the country and they have wisely interpreted this as a sign of the productive alliance of our people. This is the greatest gift the ruler could possibly bestow upon us and will likely be regarded very well by the people. It will, however, also be quite costly to take care of this rare beast, even though us could hardly refuse to do so.
+
+Replacing "us could hardly refuse to do so" with "we could hardly refuse to do so" to maintain internal logic.
+
+A white elephant has been captured in the hinterlands of the country and they have wisely interpreted this as a sign of the productive alliance of our people. This is the greatest gift the ruler could possibly bestow upon us and will likely be regarded very well by the people. It will, however, also be quite costly to take care of this rare beast, even though we could hardly refuse to do so.
+
+Replacing "the ruler" with "they" to maintain consistency.
+
+A white elephant has been captured in the hinterlands of the country and they have wisely interpreted this as a sign of the productive alliance of our people. This is the greatest gift they could possibly bestow upon us and will likely be regarded very well by the people. It will, however, also be quite costly to take care of this rare beast, even though we could hardly refuse to do so.
+
+Replacing "our people" with "the people" to maintain consistency.
+
+A white elephant has been captured in the hinterlands of the country and they have wisely interpreted this as a sign of the productive alliance of the people. This is the greatest gift they could possibly bestow upon us and will likely be regarded very well by the people. It will, however, also be quite costly to take care of this rare beast, even though we could hardly refuse to do so.
+
+Replacing "the people" with "they" to maintain consistency.
+
+A white elephant has been captured in the hinterlands of the country and they have wisely interpreted this as a

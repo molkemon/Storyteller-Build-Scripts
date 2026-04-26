@@ -1,0 +1,1 @@
+lifecalc 1 > lifespan: value

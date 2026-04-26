@@ -1,0 +1,1 @@
+Spawns one of three good events by default. If relations are bad, then it is a fifty-fifty chance between good and bad events.

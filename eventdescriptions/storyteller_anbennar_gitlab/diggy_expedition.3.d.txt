@@ -1,0 +1,1 @@
+The expedition party has a certain amount of manpower, morale, and rewards, with a preparation cost and effectiveness, and supplies.

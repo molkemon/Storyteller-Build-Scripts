@@ -1,0 +1,1 @@
+Over time we have managed to strengthen the authority of our monarch over the provinces. This does mean that the authority of local strongmen and petty chiefs is now threatened. Normally such local forces can be handled with ease, but in the province of [feudalism_province.GetName] the use of more direct force may be necessary to remind others of our right to rule.

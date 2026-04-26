@@ -1,0 +1,12 @@
+The art of necromancy is fundamentally about manipulating life energy. The most well-known example involves draining a soul to animate a corpse, but necromancers can also manipulate life directly. A skilled necromancer can extinguish unprotected souls by capturing a victim, though the mana required for this could fuel several fireballs. Alternatively, simply slitting a throat is faster and requires no mana at all. Thus, direct killing using necromancy is a rather underdeveloped field.
+
+However, a promising young necromancer, taught without Magisterial propaganda, proposed a novel idea: creating a ward calibrated to eventually kill rats, rather than trying to kill fully grown men instantly. Initial experiments show that the premise is sound, with rats thrown into the prototype wards perishing within a dozen seconds. Exposing living orcs and goblins to the ward results in them experiencing moderate pain, with actual death taking a while to occur. A starved goblin perished after an hour or two, while healthy orcs lasted a day or two before succumbing.
+
+Despite these promising results, several issues stand in the way of practical implementation:
+- Grain is even more vulnerable to the death ward than vermin. This could be mitigated by only making small death wards covering the entrance to granaries, but this would leave granaries vulnerable if cracks or other small openings are missed.
+- The mana required for even a vermin-killing ward is relatively high, with souls being consumed within days, making wide-scale deployment impractical.
+- While vermin are indeed killed, their corpses might cause grain to rot, even if the grain itself was protected from the effects of the ward.
+
+Despite these challenges, the leadership at the Black Sepulcher believes this line of inquiry promising. To investigate this, a series of granaries for field tests would be appreciated. See the appendix for further resource requests.
+
+- Monthly report of the Black Sepulcher, today of now

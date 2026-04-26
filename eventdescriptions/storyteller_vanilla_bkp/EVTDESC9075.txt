@@ -1,0 +1,17 @@
+In the year of our lord, [GetYear] is removed as it is redundant and can be replaced with "today" or "now" to make the sentence more natural. The sentence now reads: 
+
+In the year of our lord, today, the most serene Augustus [Emperor.Monarch.GetName], Romanorum Imperator, crowned by God, has again convened the Estates of the Holy Roman Empire. The Diet has agreed to a motion to unite the disparate states of The Empire into a nation state and recrown the [Emperor.Monarch.GetTitle] as its hereditary ruler.
+
+The [Emperor.Monarch.GetTitle] is combined into a single phrase to make the sentence more natural. The sentence now reads: 
+
+In the year of our lord, today, the most serene Augustus [Emperor.Monarch.GetName], Romanorum Imperator, crowned by God, has again convened the Estates of the Holy Roman Empire. The Diet has agreed to a motion to unite the disparate states of The Empire into a nation state and recrown the most serene Augustus as its hereditary ruler.
+
+The [Emperor.Monarch.GetName] is replaced with a generic term for a ruler, "Augustus" is already a title for an emperor, so it is kept. The sentence now reads: 
+
+In the year of our lord, today, the most serene Augustus, Romanorum Imperator, crowned by God, has again convened the Estates of the Holy Roman Empire. The Diet has agreed to a motion to unite the disparate states of The Empire into a nation state and recrown the most serene Augustus as its hereditary ruler.
+
+The Romanorum Imperator is replaced with a generic term for a ruler, "lord" or "ruler" could be used, but "Roman Emperor" is a more fitting term. The sentence now reads: 
+
+In the year of our lord, today, the most serene Augustus, Roman Emperor, crowned by God, has again convened the Estates of the Holy Roman Empire. The Diet has agreed to a motion to unite the disparate states of The Empire into a nation state and recrown the most serene Augustus as its hereditary ruler.
+
+The sentence is now internally logical and free of any brackets or dollar signs.

@@ -1,0 +1,1 @@
+We are playing against a competitor. Now obviously we aren’t going to go crazy and simulate an actual chess game, we’ll leave that to another game. You may instead choose a general strategy to take your opponent. Yes. It’s rock paper scissors: The dove brushes away the parchment, the parchment forbids the sword, and the sword slices the dove.

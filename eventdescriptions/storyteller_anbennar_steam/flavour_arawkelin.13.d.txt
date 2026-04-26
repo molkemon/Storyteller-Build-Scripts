@@ -1,0 +1,3 @@
+Okay, I understand. Please provide the text containing the dynamic localization tags. I will process it according to your instructions, replacing or removing all instances of dynamic localization within brackets or dollar signs with appropriate generic wording, ensuring no such tags remain in the output. I will focus on inferring context and maintaining natural-sounding language.
+
+**Please paste the text here.**

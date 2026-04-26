@@ -1,0 +1,1 @@
+This is to initiate the triggered province modifier which begins the event chain to have it start at the beginning of each decade.

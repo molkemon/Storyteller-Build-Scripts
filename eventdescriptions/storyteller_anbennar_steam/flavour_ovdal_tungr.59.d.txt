@@ -1,0 +1,1 @@
+You lost the province the Sea Hold was docked in. There should be a contingency in the menu.

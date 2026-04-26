@@ -1,0 +1,1 @@
+This menu contains the different races of the world, and allows you to control whether you expel or purge them.

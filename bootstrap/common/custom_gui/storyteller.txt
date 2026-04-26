@@ -1,0 +1,24 @@
+custom_button = {
+    name = $modName_playsound
+	tooltip = storyteller_play_tt
+    
+	potential = {
+		ai = no
+		
+		check_variable = {
+			which = $modName_id
+			value = 1 
+		}
+	}
+
+	effect = {
+
+	
+	    hidden_effect = {
+			set_variable = { 
+				which = $modName_id
+				value = 0
+			}
+		}
+	}
+}

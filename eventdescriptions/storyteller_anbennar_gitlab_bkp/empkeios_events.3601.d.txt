@@ -1,0 +1,1 @@
+This event should be hidden! This is a controller event to calculate the development of relevant allies and discount the administrative, diplomatic, and military mana accordingly.

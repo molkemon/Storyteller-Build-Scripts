@@ -1,0 +1,1 @@
+Gun: Soldier+Industry  Children: Trade+Industry  Workers: Full Industry  Soldier: Full Military  Trade: Full Trade  Citizens: Trade + Soldiers

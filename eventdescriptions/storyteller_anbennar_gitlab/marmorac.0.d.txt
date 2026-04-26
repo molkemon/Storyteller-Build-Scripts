@@ -1,0 +1,1 @@
+Paradox never fixed the bug that hidden events show up if you load in on that day.

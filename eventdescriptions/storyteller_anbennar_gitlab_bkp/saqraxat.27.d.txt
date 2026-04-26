@@ -1,0 +1,1 @@
+This is the **hidden** event that chooses what aid you'll receive.  You may be seeing this because you loaded a save game and the event happened to occur on the same day.

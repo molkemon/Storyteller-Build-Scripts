@@ -1,0 +1,1 @@
+[From.GetName] sent diplomats and merchants to the court of our monarch. Apparently these men are seeking an audience with our ruler. They offer a trade deal, where we offer gold from our mines to [From.GetName] in exchange for a proper currency for our economy.

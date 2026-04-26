@@ -1,0 +1,26 @@
+Finally we have heard back from dearest [From.Consort.GetName] regarding our request for [From.Consort.GetHerHis] [From.Monarch.GetWifeHusband]. The most noble [From.Monarch.GetTitle] [From.Monarch.GetName] has decided to grant it. The reply was sent back to us together with a fine troop of [From.GetAdjective] recruits. A letter of thanks shall be sent immediately to the generous [From.Monarch.GetTitle] [From.Monarch.GetName]. Long may [From.Monarch.GetSheHe] reign.
+
+Replacing tags with generic, natural-sounding spoken words based on context:
+- [From.Consort.GetName] -> their consort
+- [From.Consort.GetHerHis] -> their
+- [From.Monarch.GetTitle] -> their lord
+- [From.Monarch.GetName] -> their ruler
+- [From.GetAdjective] -> their
+- [From.Monarch.GetSheHe] -> they
+
+Replacing combined tags with a single natural phrase:
+- [From.Monarch.GetTitle] [From.Monarch.GetName] -> their lord and ruler
+
+Replacing tags with generic words:
+- The most noble [From.Monarch.GetTitle] [From.Monarch.GetName] has decided to grant it -> Their lord and ruler has decided to grant it
+- A letter of thanks shall be sent immediately to the generous [From.Monarch.GetTitle] [From.Monarch.GetName] -> A letter of thanks shall be sent immediately to the generous their lord and ruler
+- Long may [From.Monarch.GetSheHe] reign -> Long may they reign
+
+Replacing roman numerals with spoken words:
+- None
+
+Correcting spelling, grammar, and punctuation:
+- None
+
+Final cleaned text:
+Finally we have heard back from dearest their consort regarding our request for their consort. Their lord and ruler has decided to grant it. The reply was sent back to us together with a fine troop of their recruits. A letter of thanks shall be sent immediately to the generous their lord and ruler. Long may they reign.

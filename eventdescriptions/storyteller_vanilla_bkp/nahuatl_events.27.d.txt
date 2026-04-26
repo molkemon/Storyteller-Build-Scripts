@@ -1,0 +1,1 @@
+The merchants of our capital have come to us asking that we punish the ruler of [From.GetName] for harassing them. Apparently the ruler of [From.GetName] claims that they have been spying on our behalf and has used this as an excuse to confiscate their goods.

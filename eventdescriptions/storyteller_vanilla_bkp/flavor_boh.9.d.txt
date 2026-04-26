@@ -1,0 +1,1 @@
+A new lord has ascended the throne of their country. Like their predecessors, this lord has chosen to keep the heretic Hussite faith, in open defiance to all that is proper. The college of Cardinals identifies this as an affront to Catholicism and to Pope [Root.Monarch.GetName] personally.

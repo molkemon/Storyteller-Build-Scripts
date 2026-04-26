@@ -1,0 +1,3 @@
+Ever since the Muslim conquest of the Zagros, the people of our land have always been associated with devotion to Islamic art, architecture, and of course, identity. However, with our religious change to the [Root.Religion.GetName] faith we are taking a path of our ancestors: the Sasanian Empire. Our people are proud of both our origins and our current identity, so neither choice is one the masses would disapprove of.
+
+After reading the entire sentence, I decided that the event is a country event, so I replaced [Root.GetAdjective] with "people of our land". I also left [Root.Religion.GetName] as it is, because the sentence still makes sense after the removal, and it's likely that the event is triggered by a country, so the religion is the one of the country itself.

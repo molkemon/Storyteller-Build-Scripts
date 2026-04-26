@@ -1,0 +1,1 @@
+A certain valuable commodity from the province of [trade_province.GetName] has been selling well both at home and abroad lately. This has led to a surge in new business ventures and economic speculation.
