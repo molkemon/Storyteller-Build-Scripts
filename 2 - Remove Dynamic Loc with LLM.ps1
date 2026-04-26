@@ -103,34 +103,34 @@ Get-ChildItem -Path $localisationFolder -Filter "*english.yml" | ForEach-Object 
             $value = $matches[2]
 
             #loc icons
-            $value = $value -replace '£.*?£', ''
+            $value = $value -replace 'ï¿½.*?ï¿½', ''
 
             #colored strings
-            $value = $value -replace '§.*?§!', ''
+            $value = $value -replace 'ï¿½.*?ï¿½!', ''
             
             # Normalize special characters
-            $value = $value -replace '[àáâãäå]', 'a'
-            $value = $value -replace '[èéêë]', 'e'
-            $value = $value -replace '[ìíîï]', 'i'
-            $value = $value -replace '[òóôõö]', 'o'
-            $value = $value -replace '[ùúûü]', 'u'
-            $value = $value -replace '[ýÿ]', 'y'
-            $value = $value -replace '[ç]', 'c'
-            $value = $value -replace '[ñ]', 'n'
-            $value = $value -replace '[š]', 's'
-            $value = $value -replace '[ž]', 'z'
-            $value = $value -replace '[ð]', 'd'
+            $value = $value -replace '[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]', 'a'
+            $value = $value -replace '[ï¿½ï¿½ï¿½ï¿½]', 'e'
+            $value = $value -replace '[ï¿½ï¿½ï¿½ï¿½]', 'i'
+            $value = $value -replace '[ï¿½ï¿½ï¿½ï¿½ï¿½]', 'o'
+            $value = $value -replace '[ï¿½ï¿½ï¿½ï¿½]', 'u'
+            $value = $value -replace '[ï¿½ï¿½]', 'y'
+            $value = $value -replace '[ï¿½]', 'c'
+            $value = $value -replace '[ï¿½]', 'n'
+            $value = $value -replace '[ï¿½]', 's'
+            $value = $value -replace '[ï¿½]', 'z'
+            $value = $value -replace '[ï¿½]', 'd'
 
             # Newlines and punctuation
-            $value = $value -replace '“', '"'                  
-            $value = $value -replace '”', '"'                  
+            $value = $value -replace 'ï¿½', '"'                  
+            $value = $value -replace 'ï¿½', '"'                  
 			$value = $value -replace '(?:\s*\\n\s*)+', ' '
             $value = $value -replace '(\.\s*){2,}', '.'            
             $value = $value -replace '!', '.'
             $value = $value -replace '\s+\-+\s+', '; '
             $value = $value -replace '\-', ''
-            $value = $value -replace '\s+\—+\s+', '; '
-            $value = $value -replace '\—', ''
+            $value = $value -replace '\s+\ï¿½+\s+', '; '
+            $value = $value -replace '\ï¿½', ''
 			$value = $value -replace ':', '.'
      
             #pronounciation aids
