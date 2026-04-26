@@ -45,6 +45,7 @@ If you do not have available endpoints, or if you want a setup highly optimized 
 - ⚠️ To finish your mod you need to create a descriptor.mod file. You can reference the .mod file of the mod you are voicing, or my own Storyteller .mod files for Vanilla or Anbennar on how that should look like. For more information on this step see here: https://eu4.paradoxwikis.com/Mod_structure#.mod_file
 - You can now copy the entire mod folder from the build folder to your EU4 mod folder and add it to your playset.
 
+---
 
 **1. Always use PowerShell 7:**
 If you haven't upgraded, run:
