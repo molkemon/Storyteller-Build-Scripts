@@ -20,13 +20,6 @@ If you do not have available endpoints, or if you want a setup highly optimized 
 * **TTS Inference:** Minimum **6 GB VRAM**. 
 * *Note: More VRAM speeds up the LLM, but doesn't significantly speed up TTS. However, raw GPU tensor power will speed up both.*
 
-**The Easy Way (PowerShell):**
-Open PowerShell as Administrator and run:
-```powershell
-winget install Gyan.FFmpeg
-```
-*Restart your terminal after installation. You can verify it works by typing `ffmpeg -version`.*
-
 ---
 
 ## Phase 0: The Script Setup (PowerShell 7)
@@ -50,16 +43,21 @@ winget install Gyan.FFmpeg
 - Scripts 2-4 should be save to "pause" (via killing them with ctr-c) as all of them should resume where they left off on further execution. The other scripts don't take long enough for this to be a concern. 
 
 
-##0.5 Required Dependencies: FFmpeg
-The audio processing scripts require `ffmpeg` to be installed and added to your Windows `PATH`. 
-  
-
 **1. Always use PowerShell 7:**
 If you haven't upgraded, run:
 ```powershell
 winget install --id Microsoft.Powershell --source winget
 ```
 Restart Windows Terminal, click the down-arrow > **Settings** > **Startup** > **Default Profile** > select **PowerShell** (the black logo).
+
+**1.5 Required Dependencies: FFmpeg**
+The audio processing scripts require `ffmpeg` to be installed and added to your Windows `PATH`. 
+
+Open PowerShell as Administrator and run:
+```powershell
+winget install Gyan.FFmpeg
+```
+*Restart your terminal after installation. You can verify it works by typing `ffmpeg -version`.*
 
 **2. The "Configure Once" Rule:**
 Every script is divided into two sections: `CONFIGURATION` and `SCRIPT CODE`.
