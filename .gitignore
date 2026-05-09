@@ -2,3 +2,4 @@ gitignore/
 redo/
 redone/
 build/
+.vscode/
