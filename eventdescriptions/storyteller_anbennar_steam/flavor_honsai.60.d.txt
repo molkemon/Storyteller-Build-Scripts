@@ -1,0 +1,1 @@
+Current willpower of the Ghost Emperor is a certain amount. Yearly decay rate is a certain amount. The Ghost Emperor's willpower in years is a certain amount. Reward calculation is a certain amount divided by nineteen. Small reward, medium reward, or huge reward.

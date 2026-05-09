@@ -3,14 +3,15 @@
 #=======================================================
 
 #This is the name of the mod you want to make to better distinguish versions for different mods, e.g storyteller_vanilla, $storyteller_anbennar_steam, storyteller_meiou etc
-#$modName = "storyteller_vanilla"
-#$modName = "storyteller_anbennar_steam"
-#$modName = "storyteller_anbennar_gitlab"     #I use anbennar as an example to show the difference between vanilla and any mod
+$modName = "storyteller_anbennar_steam"
+
+#Set this to the name of another mod to scavenge existing event descriptions and sound files from it. Leave empty ("") to disable.
+$copyFromModName = "storyteller_anbennar_gitlab"
 
 #This needs to point at the root directory of either the base game if you want to do vanilla, or the root folder of the mod if you want to do any mod
 #$rootFolder = "D:\Steam\steamapps\common\Europa Universalis IV"                                         #EU 4 Vanilla
-#$rootFolder = "D:\Steam\steamapps\workshop\content\236850\1385440355"                                   #Anbennar Steam version
-$rootFolder = "C:\Users\grand\Documents\Paradox Interactive\Europa Universalis IV\mod\Anbennar-PublicFork"       #Anbennar GitLab Version
+$rootFolder = "D:\Steam\steamapps\workshop\content\236850\1385440355"                                   #Anbennar Steam version
+#$rootFolder = "C:\Users\grand\Documents\Paradox Interactive\Europa Universalis IV\mod\Anbennar-PublicFork"       #Anbennar GitLab Version
 
 #Your EU4 mod folder
 $modFolder = "C:\Users\grand\Documents\Paradox Interactive\Europa Universalis IV\mod"
@@ -32,6 +33,31 @@ $customGuiFolder = [System.IO.Path]::Combine($modOutputFolder, "common", "custom
 $csvFile = [System.IO.Path]::Combine($scriptFolder, "filelist_$modName.csv")
 $assetFile = [System.IO.Path]::Combine($soundFolder, "$modName.asset")
 $customGuiFile = [System.IO.Path]::Combine($customGuiFolder, "$modName.txt")
+
+# Scavenging paths
+if ($copyFromModName -ne "") {
+    $copyFromEventDescFolder = [System.IO.Path]::Combine($scriptFolder, "eventdescriptions", $copyFromModName)
+    $copyFromSoundFolder = [System.IO.Path]::Combine($scriptFolder, "build", $copyFromModName, "sound")
+}
+
+
+#=======================================================
+# Text Correction Configuration
+#=======================================================
+
+# Pre-LLM Scan: If these words are found in the generated file but NOT in the original loc, the file is deleted and re-queued.
+$wordsToTriggerRegen = @(
+    "TODO",
+    "placeholder"
+)
+
+# Post-LLM Scan: Hashtable of words to replace after the LLM finishes. 
+# Format: @{ "BadWord" = "GoodWord" }
+# The script will first search for the BadWord in the original loc to see if this was actually the intended word. If not, it will replace BadWord with GoodWord
+$postLlmReplace = @{
+    "mechanism" = "mechanim"
+    "mechanisms" = "mechanim"
+}
 
 
 #=======================================================
@@ -64,6 +90,7 @@ Execute the following rules strictly:
    - Rulers/People: use "lord", "ruler", "monarch", "heir", or "advisor".
    - Pronouns: substitute with "they/their" where appropriate.
    - Dates ([GetDate], [GetYear]): use "today", "now", "currently", or remove entirely if redundant.
+   - The Mechanim are a race, not a typo, do not replace Mechanim with mechanism
 3. COMBINE TAGS: If multiple tags appear together (e.g., [Root.Monarch.GetTitle] [Root.Monarch.GetName]), combine them into a single natural phrase.
 4. SPELLING & PUNCTUATION: Correct any obvious spelling errors, awkward grammar, or broken punctuation in the base text to ensure the speech engine reads it fluidly.
 5. NO LEFTOVERS: Under no circumstances should any brackets [], dollar signs $, or placeholder variable names remain in the final text. Output ONLY natural, spoken words and standard punctuation.
@@ -84,35 +111,79 @@ $ttsApiUrl = "http://127.0.0.1:7851/api/tts-generate"
 
 
 #=======================================================
-# Script Code
+# Pre-Flight Hard Drive Scan
 #=======================================================
 
-$previouslyDone = "false"
 $csvData = Import-Csv -Path $csvFile -Delimiter ";"
-$totalCount = @($csvData).Count
-$currentCount = 0
+$initialTotal = @($csvData).Count
+
+$verifiedDoneCount = 0
+$recoveredCount = 0
+$todoList = @()
+
+Write-Host "Cross-referencing CSV with existing audio files..." -ForegroundColor Cyan
+
+foreach ($row in $csvData) {
+    $outputFilePath = Join-Path $soundFolder "$($row.eventId).wav"
+    $fileExists = (Test-Path $outputFilePath) -and ((Get-Item $outputFilePath).Length -gt 0)
+
+    if ($fileExists) {
+        if ($row.alreadyDone -eq "true") {
+            $verifiedDoneCount++
+        } else {
+            $row.alreadyDone = "true"
+            $recoveredCount++
+        }
+    } else {
+        $row.alreadyDone = "false"
+        
+        # We can only process it if the text description actually exists
+        $descFilePath = Join-Path $eventDescFolder "$($row.eventId).txt"
+        if ((Test-Path $descFilePath) -and ((Get-Item $descFilePath).Length -gt 0)) {
+            $todoList += $row
+        }
+    }
+}
+
+$sessionTarget = @($todoList).Count
+
+Write-Host ""
+Write-Host "=================================================" -ForegroundColor Magenta
+Write-Host " PRE-FLIGHT REPORT" -ForegroundColor White
+Write-Host " Total Events in CSV:        $initialTotal"
+Write-Host " Verified Complete (Audio):  $verifiedDoneCount" -ForegroundColor Green
+Write-Host " Recovered (Fixed Desync):   $recoveredCount" -ForegroundColor Yellow
+Write-Host " Queued for TTS Engine:      $sessionTarget" -ForegroundColor Red
+Write-Host "=================================================" -ForegroundColor Magenta
+Write-Host ""
+
+if ($sessionTarget -eq 0) {
+    Write-Host "All audio files exist. The queue is completely empty." -ForegroundColor Green
+    $csvData | Export-Csv -Path $csvFile -NoTypeInformation -Delimiter ";"
+    
+    # Still want to jump to the asset rebuild in case something changed
+    Goto Rebuild-Assets 
+}
+
+
+#=======================================================
+# The Execution Phase
+#=======================================================
 
 Write-Host "Starting Text to Speech generation..." -ForegroundColor Cyan
+$currentProgress = 0
 
-foreach ($eventEntry in $csvData) {
-    $currentCount++
-    if ($eventEntry.alreadyDone -eq "true") {
-        continue
-    }
-    
+foreach ($eventEntry in $todoList) {
+    $currentProgress++
     $descKey = $eventEntry.eventId
-    Write-Progress -Activity "Generating TTS audio" -Status "Event $currentCount of $totalCount $descKey" -PercentComplete (($currentCount / $totalCount) * 100)
+    
+    $percentage = [math]::Min(100, [math]::Max(0, [math]::Round(($currentProgress / $sessionTarget) * 100)))
+    Write-Progress -Activity "Generating TTS audio" -Status "Event $currentProgress of $sessionTarget | $descKey" -PercentComplete $percentage
 
     $descFilePath = Join-Path $eventDescFolder "$descKey.txt"
-    
-    if (-not (Test-Path $descFilePath)) {
-        Write-Warning "Description file for $descKey not found. Skipping."
-        continue
-    }
-
     $desc = Get-Content -Path $descFilePath -Raw
     
-    # Catch empty files before we bother the API
+    # Just in case whitespace slipped past the pre-flight
     if ([string]::IsNullOrWhiteSpace($desc)) {
         continue
     }
@@ -120,12 +191,6 @@ foreach ($eventEntry in $csvData) {
     $outputFileName = $descKey
     $outputFilePath = Join-Path $soundFolder "$outputFileName.wav"
     $tempFilePath = Join-Path $soundFolder "temp_$outputFileName.wav"
-    
-    if (Test-Path $outputFilePath) {
-        $previouslyDone = "true"
-    } else {
-        $previouslyDone = "false"
-    }
     
     # One clean API call. The server returns the wav directly to our temp file.
     $body = @{ text_input = $desc }
@@ -141,29 +206,67 @@ foreach ($eventEntry in $csvData) {
     Remove-Item -Path $tempFilePath -ErrorAction SilentlyContinue
 
     Write-Host " -> Saved wave file to $outputFilePath" -ForegroundColor Green
-    
-    # Add to asset file only if hasn't been done and not already present
-    if ($previouslyDone -eq "false") {
-        $assetContent = if (Test-Path $assetFile) { Get-Content $assetFile -Raw } else { "" }
-        
-        # Check to ensure no double entries
-        if ($assetContent -notmatch "name\s*=\s*`"$outputFileName`"" -and $assetContent -notmatch "name\s*=\s*$outputFileName\b") {
-            $assetEntry = @(
-                 "sound = {",
-                 "	name = $outputFileName",
-                 "	file = ""$outputFileName.wav""",
-                 "	always_load = no",
-                 "}",
-                 ""
-            )
-            Add-Content -Path $assetFile -Value $assetEntry
-            Write-Host " -> Appended $outputFileName to asset index." -ForegroundColor Yellow
-        }
-    }
-
-    $previouslyDone = "false"
-    $eventEntry.alreadyDone = "true"
-    $csvData | Export-Csv -Path $csvFile -NoTypeInformation -Delimiter ";"
 }
 
-Write-Host "TTS Processing complete!" -ForegroundColor Cyan
+# Clear the progress bar when finished
+Write-Progress -Activity "Generating TTS audio" -Completed
+
+
+#=======================================================
+# Post-Flight Debrief & Save
+#=======================================================
+
+Write-Host "Re-evaluating hard drive to confirm kills..." -ForegroundColor Cyan
+
+$finalDoneCount = 0
+foreach ($row in $csvData) {
+    $outputFilePath = Join-Path $soundFolder "$($row.eventId).wav"
+    if ((Test-Path $outputFilePath) -and ((Get-Item $outputFilePath).Length -gt 0)) {
+        $row.alreadyDone = "true"
+        $finalDoneCount++
+    }
+}
+
+$processedThisSession = $finalDoneCount - ($verifiedDoneCount + $recoveredCount)
+
+Write-Host ""
+Write-Host "=================================================" -ForegroundColor Magenta
+Write-Host " POST-FLIGHT DEBRIEF" -ForegroundColor White
+Write-Host " Newly Generated Audio:      $processedThisSession" -ForegroundColor Green
+Write-Host " Total Audio Completion:     $finalDoneCount / $initialTotal" -ForegroundColor Yellow
+Write-Host "=================================================" -ForegroundColor Magenta
+
+$csvData | Export-Csv -Path $csvFile -NoTypeInformation -Delimiter ";"
+Write-Host "CSV successfully updated." -ForegroundColor Cyan
+
+
+#=======================================================
+# Rebuild Asset File
+#=======================================================
+
+Write-Host "Rebuilding asset file from existing audio files..." -ForegroundColor Cyan
+
+$assetContent = @()
+$wavFiles = Get-ChildItem -Path $soundFolder -Filter "*.wav"
+$validFileCount = 0
+
+foreach ($wavFile in $wavFiles) {
+    # Skip any lingering temp files just in case ffmpeg crashed and didn't clean up
+    if ($wavFile.Name -match "^temp_") {
+        continue
+    }
+
+    $soundName = $wavFile.BaseName
+    
+    $assetContent += "sound = {"
+    $assetContent += "`tname = $soundName"
+    $assetContent += "`tfile = `"$($wavFile.Name)`""
+    $assetContent += "`talways_load = no"
+    $assetContent += "}"
+    $assetContent += ""
+    
+    $validFileCount++
+}
+
+$assetContent | Set-Content -Path $assetFile -Force
+Write-Host "Asset index rebuilt successfully with $validFileCount entries. Standing by." -ForegroundColor Green

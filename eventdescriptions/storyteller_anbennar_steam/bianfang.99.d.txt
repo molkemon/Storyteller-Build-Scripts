@@ -1,0 +1,1 @@
+Use this event to move yourself one way or the other. If you see this normally in game, there is something very wrong.

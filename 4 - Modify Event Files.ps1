@@ -3,14 +3,15 @@
 #=======================================================
 
 #This is the name of the mod you want to make to better distinguish versions for different mods, e.g storyteller_vanilla, $storyteller_anbennar_steam, storyteller_meiou etc
-#$modName = "storyteller_vanilla"
-#$modName = "storyteller_anbennar_steam"
-$modName = "storyteller_anbennar_gitlab"     #I use anbennar as an example to show the difference between vanilla and any mod
+$modName = "storyteller_anbennar_steam"
+
+#Set this to the name of another mod to scavenge existing event descriptions and sound files from it. Leave empty ("") to disable.
+$copyFromModName = "storyteller_anbennar_gitlab"
 
 #This needs to point at the root directory of either the base game if you want to do vanilla, or the root folder of the mod if you want to do any mod
-#$rootFolder = "D:\Steam\steamapps\common\Europa Universalis IV"                                        #EU 4 Vanilla
-#$rootFolder = "D:\Steam\steamapps\workshop\content\236850\1385440355"                                 #Anbennar Steam version
-$rootFolder = "C:\Users\grand\Documents\Paradox Interactive\Europa Universalis IV\mod\Anbennar-PublicFork"       #Anbennar GitLab Version
+#$rootFolder = "D:\Steam\steamapps\common\Europa Universalis IV"                                         #EU 4 Vanilla
+$rootFolder = "D:\Steam\steamapps\workshop\content\236850\1385440355"                                   #Anbennar Steam version
+#$rootFolder = "C:\Users\grand\Documents\Paradox Interactive\Europa Universalis IV\mod\Anbennar-PublicFork"       #Anbennar GitLab Version
 
 #Your EU4 mod folder
 $modFolder = "C:\Users\grand\Documents\Paradox Interactive\Europa Universalis IV\mod"
@@ -32,6 +33,31 @@ $customGuiFolder = [System.IO.Path]::Combine($modOutputFolder, "common", "custom
 $csvFile = [System.IO.Path]::Combine($scriptFolder, "filelist_$modName.csv")
 $assetFile = [System.IO.Path]::Combine($soundFolder, "$modName.asset")
 $customGuiFile = [System.IO.Path]::Combine($customGuiFolder, "$modName.txt")
+
+# Scavenging paths
+if ($copyFromModName -ne "") {
+    $copyFromEventDescFolder = [System.IO.Path]::Combine($scriptFolder, "eventdescriptions", $copyFromModName)
+    $copyFromSoundFolder = [System.IO.Path]::Combine($scriptFolder, "build", $copyFromModName, "sound")
+}
+
+
+#=======================================================
+# Text Correction Configuration
+#=======================================================
+
+# Pre-LLM Scan: If these words are found in the generated file but NOT in the original loc, the file is deleted and re-queued.
+$wordsToTriggerRegen = @(
+    "TODO",
+    "placeholder"
+)
+
+# Post-LLM Scan: Hashtable of words to replace after the LLM finishes. 
+# Format: @{ "BadWord" = "GoodWord" }
+# The script will first search for the BadWord in the original loc to see if this was actually the intended word. If not, it will replace BadWord with GoodWord
+$postLlmReplace = @{
+    "mechanism" = "mechanim"
+    "mechanisms" = "mechanim"
+}
 
 
 #=======================================================
@@ -64,6 +90,7 @@ Execute the following rules strictly:
    - Rulers/People: use "lord", "ruler", "monarch", "heir", or "advisor".
    - Pronouns: substitute with "they/their" where appropriate.
    - Dates ([GetDate], [GetYear]): use "today", "now", "currently", or remove entirely if redundant.
+   - The Mechanim are a race, not a typo, do not replace Mechanim with mechanism
 3. COMBINE TAGS: If multiple tags appear together (e.g., [Root.Monarch.GetTitle] [Root.Monarch.GetName]), combine them into a single natural phrase.
 4. SPELLING & PUNCTUATION: Correct any obvious spelling errors, awkward grammar, or broken punctuation in the base text to ensure the speech engine reads it fluidly.
 5. NO LEFTOVERS: Under no circumstances should any brackets [], dollar signs $, or placeholder variable names remain in the final text. Output ONLY natural, spoken words and standard punctuation.

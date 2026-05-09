@@ -1,0 +1,1 @@
+Cavalry Cost. [Number] percent. Construction Cost. [Number Halved] percent. Goods Produced in grain and [Growth] livestock provinces. [Number] percent. [Training Physical] [Training Physical Bonus] [Training Mental] [Training Mental Bonus] [Training Chance] [Training Progress] [Training Focus].

@@ -1,0 +1,1 @@
+Lake Federation Factions are now enabled. All Federation members will join either the Sword or Purse Factions. Members of the Sword Faction will join all wars declared on the Federation, with Purse Faction members supporting them financially. Hover over a member's standing on the Diplomacy Screen to see each nation's faction.

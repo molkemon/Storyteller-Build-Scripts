@@ -1,0 +1,1 @@
+The Command Armies have certain actions they can take. They are able to resupply from their war camp or from supply depots and create military colonies. Additionally, each of them has a unique ability.
