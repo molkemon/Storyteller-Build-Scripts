@@ -6,7 +6,10 @@
 $modName = "storyteller_anbennar_steam"
 
 #Set this to the name of another mod to scavenge existing event descriptions and sound files from it. Leave empty ("") to disable.
-$copyFromModName = "storyteller_anbennar_gitlab"
+$copyFromModName = ""
+
+# Base Game Folder (Required for vanilla localization fallback)
+$vanillaGameFolder = "D:\Steam\steamapps\common\Europa Universalis IV"
 
 #This needs to point at the root directory of either the base game if you want to do vanilla, or the root folder of the mod if you want to do any mod
 #$rootFolder = "D:\Steam\steamapps\common\Europa Universalis IV"                                         #EU 4 Vanilla
@@ -23,6 +26,7 @@ $modFolder = "C:\Users\grand\Documents\Paradox Interactive\Europa Universalis IV
 
 $scriptFolder = Split-Path -Parent $MyInvocation.MyCommand.Path
 $localisationFolder = [System.IO.Path]::Combine($rootFolder, "localisation")
+$vanillaLocalisationFolder = [System.IO.Path]::Combine($vanillaGameFolder, "localisation")
 $eventsFolder = [System.IO.Path]::Combine($rootFolder, "events")
 $eventDescFolder = [System.IO.Path]::Combine($scriptFolder, "eventdescriptions", $modName)
 $modOutputFolder = [System.IO.Path]::Combine($scriptFolder, "build", $modName)
@@ -119,66 +123,79 @@ if (-not (Test-Path $eventDescFolder)) {
 }
 
 # Build the Translation Dictionary
+function Build-LocTable {
+    param([string]$targetFolder)
+    
+    $table = @{}
+    if (-not (Test-Path $targetFolder)) { return $table }
 
-$localisationTable = @{}
-Write-Host "Creating localisation table..." -ForegroundColor Cyan
-Get-ChildItem -Path $localisationFolder -Filter "*english.yml" | ForEach-Object {
-    $content = Get-Content $_.FullName -Raw
-    foreach ($line in $content -split "`r?`n") {
-        if ($line -match '^\s*([^:]+):(?:\d*)?\s*"(.*)"\s*$') {
-            $key = $matches[1].Trim()
-            $value = $matches[2]
+    Get-ChildItem -Path $targetFolder -Filter "*english.yml" | ForEach-Object {
+        $content = Get-Content $_.FullName -Raw
+        foreach ($line in $content -split "`r?`n") {
+            # Loosened regex to ignore inline comments and trailing garbage
+            if ($line -match '^\s*([^:]+):(?:\d*)?\s*"(.*)"\s*(?:#.*)?$') {
+                $key = $matches[1].Trim()
+                $value = $matches[2]
 
-            #loc icons
-            $value = $value -replace '£.*?£', ''
+                #loc icons
+                $value = $value -replace '£.*?£', ''
 
-            #colored strings
-            $value = $value -replace '§.*?§!', ''
-            
-            # Normalize special characters
-            $value = $value -replace '[àáâãäå]', 'a'
-            $value = $value -replace '[èéêë]', 'e'
-            $value = $value -replace '[ìíîï]', 'i'
-            $value = $value -replace '[òóôõö]', 'o'
-            $value = $value -replace '[ùúûü]', 'u'
-            $value = $value -replace '[ýÿ]', 'y'
-            $value = $value -replace '[ç]', 'c'
-            $value = $value -replace '[ñ]', 'n'
-            $value = $value -replace '[š]', 's'
-            $value = $value -replace '[ž]', 'z'
-            $value = $value -replace '[ð]', 'd'
+                #colored strings
+                $value = $value -replace '§.*?§!', ''
+                
+                # Normalize special characters
+                $value = $value -replace '[àáâãäå]', 'a'
+                $value = $value -replace '[èéêë]', 'e'
+                $value = $value -replace '[ìíîï]', 'i'
+                $value = $value -replace '[òóôõö]', 'o'
+                $value = $value -replace '[ùúûü]', 'u'
+                $value = $value -replace '[ýÿ]', 'y'
+                $value = $value -replace '[ç]', 'c'
+                $value = $value -replace '[ñ]', 'n'
+                $value = $value -replace '[š]', 's'
+                $value = $value -replace '[ž]', 'z'
+                $value = $value -replace '[ð]', 'd'
 
-            # Newlines and punctuation
-            $value = $value -replace '“', '"'                  
-            $value = $value -replace '”', '"'                  
-            $value = $value -replace '\s*\\n\s*', ' '          
-            $value = $value -replace '(\.\s*){2,}', '.'            
-            $value = $value -replace '!', '.'
-            $value = $value -replace '\s+\-+\s+', '; '
-            $value = $value -replace '\-', ''
-            $value = $value -replace '\s+\—+\s+', '; '
-            $value = $value -replace '\—', ''
-     
-            #pronounciation aids
-            $value = $value -replace '\sorc', ' ork'
-            $value = $value -replace 'halforc', 'halfork'
-            $value = $value -replace 'orcish', 'orkish'
-            $value = $value -replace 'CLSTC', 'C L ASS T C'
-            $value = $value -replace 'Aelantir', 'Aelantier'
-			$value = $value -replace 'CLOAKERS', 'Cloakers'
-            $value = $value -replace 'demesne', 'domain'
-            $value = $value -replace 'Dames', 'Dames '            
-            $value = $value -replace '\[DungeonOverlay\]', ''
-            $value = $value -replace '\[EncounterOverlay\]', ''
+                # Newlines and punctuation
+                $value = $value -replace '“', '"'                  
+                $value = $value -replace '”', '"'                  
+                $value = $value -replace '\s*\\n\s*', ' '          
+                $value = $value -replace '(\.\s*){2,}', '.'            
+                $value = $value -replace '!', '.'
+                $value = $value -replace '\s+\-+\s+', '; '
+                $value = $value -replace '\-', ''
+                $value = $value -replace '\s+\—+\s+', '; '
+                $value = $value -replace '\—', ''
+         
+                #pronounciation aids
+                $value = $value -replace '\sorc', ' ork'
+                $value = $value -replace 'halforc', 'halfork'
+                $value = $value -replace 'orcish', 'orkish'
+                $value = $value -replace 'CLSTC', 'C L ASS T C'
+                $value = $value -replace 'Aelantir', 'Aelantier'
+                $value = $value -replace 'CLOAKERS', 'Cloakers'
+                $value = $value -replace 'demesne', 'domain'
+                $value = $value -replace 'Dames', 'Dames '            
+                $value = $value -replace '\[DungeonOverlay\]', ''
+                $value = $value -replace '\[EncounterOverlay\]', ''
 
-            #whitespace before EOL
-            $value = $value -replace '\s*$', ''
+                #whitespace before EOL
+                $value = $value -replace '\s*$', ''
 
-            $localisationTable[$key] = $value.Trim()
+                $table[$key] = $value.Trim()
+            }
         }
     }
+    return $table
 }
-Write-Host "Localisation table created!" -ForegroundColor Green
+
+Write-Host "Creating Mod localisation table..." -ForegroundColor Cyan
+$localisationTable = Build-LocTable -targetFolder $localisationFolder
+
+Write-Host "Creating Vanilla localisation fallback table..." -ForegroundColor Cyan
+$vanillaLocTable = Build-LocTable -targetFolder $vanillaLocalisationFolder
+
+Write-Host "Localisation tables created!" -ForegroundColor Green
 
 
 # Pre-Flight Hard Drive Scan
@@ -204,7 +221,14 @@ foreach ($row in $csvData) {
         # Check for unauthorized placeholders
         foreach ($word in $wordsToTriggerRegen) {
             if ($descText -match "(?i)\b$([regex]::Escape($word))\b") {
-                $origLoc = $localisationTable[$row.eventId]
+                
+                $origLoc = ""
+                if ($localisationTable.ContainsKey($row.eventId)) {
+                    $origLoc = $localisationTable[$row.eventId]
+                } elseif ($vanillaLocTable.ContainsKey($row.eventId)) {
+                    $origLoc = $vanillaLocTable[$row.eventId]
+                }
+
                 if ($origLoc -notmatch "(?i)\b$([regex]::Escape($word))\b") {
                     $needsRegeneration = $true
                     break
@@ -268,11 +292,14 @@ if ($sessionTarget -eq 0) {
         $descKey = $eventEntry.eventId
         $descFilePath = Join-Path ($using:eventDescFolder) "$descKey.txt"
 
-        if (-not ($using:localisationTable).ContainsKey($descKey)) {
+        $rawText = ""
+        if (($using:localisationTable).ContainsKey($descKey)) {
+            $rawText = ($using:localisationTable)[$descKey]
+        } elseif (($using:vanillaLocTable).ContainsKey($descKey)) {
+            $rawText = ($using:vanillaLocTable)[$descKey]
+        } else {
             return
         }
-        
-        $rawText = ($using:localisationTable)[$descKey]
 
         $body = @{
             model = $using:vllmModel
@@ -324,7 +351,13 @@ foreach ($row in $csvData) {
         foreach ($badWord in $postLlmReplace.Keys) {
             # Check if the bad word exists in the generated text
             if ($content -match "(?i)\b$([regex]::Escape($badWord))\b") {
-                $origLoc = $localisationTable[$descKey]
+                
+                $origLoc = ""
+                if ($localisationTable.ContainsKey($descKey)) {
+                    $origLoc = $localisationTable[$descKey]
+                } elseif ($vanillaLocTable.ContainsKey($descKey)) {
+                    $origLoc = $vanillaLocTable[$descKey]
+                }
                 
                 # Check if the original loc actually wanted this word
                 if ($origLoc -notmatch "(?i)\b$([regex]::Escape($badWord))\b") {

@@ -6,7 +6,10 @@
 $modName = "storyteller_anbennar_steam"
 
 #Set this to the name of another mod to scavenge existing event descriptions and sound files from it. Leave empty ("") to disable.
-$copyFromModName = "storyteller_anbennar_gitlab"
+$copyFromModName = ""
+
+# Base Game Folder (Required for vanilla localization fallback)
+$vanillaGameFolder = "D:\Steam\steamapps\common\Europa Universalis IV"
 
 #This needs to point at the root directory of either the base game if you want to do vanilla, or the root folder of the mod if you want to do any mod
 #$rootFolder = "D:\Steam\steamapps\common\Europa Universalis IV"                                         #EU 4 Vanilla
@@ -23,6 +26,7 @@ $modFolder = "C:\Users\grand\Documents\Paradox Interactive\Europa Universalis IV
 
 $scriptFolder = Split-Path -Parent $MyInvocation.MyCommand.Path
 $localisationFolder = [System.IO.Path]::Combine($rootFolder, "localisation")
+$vanillaLocalisationFolder = [System.IO.Path]::Combine($vanillaGameFolder, "localisation")
 $eventsFolder = [System.IO.Path]::Combine($rootFolder, "events")
 $eventDescFolder = [System.IO.Path]::Combine($scriptFolder, "eventdescriptions", $modName)
 $modOutputFolder = [System.IO.Path]::Combine($scriptFolder, "build", $modName)
@@ -83,9 +87,9 @@ Try to decipher what exactly might be going on from the context of the entire ev
 
 
 Execute the following rules strictly:
-1. REPLACE ALL TAGS: Replace all dynamic variables (e.g., [Root.Monarch.GetName], $COUNTRY$, EVERYTHING between brackets or dollar signs) with generic, natural-sounding spoken words based on context. If you are unable to determine the context by reading the entire sentence, you can also remove the dynamic loc tag entirely, but only if the sentence still makes sense after the removal. If additional (non dynamic loc) words must be changed for the replacement word to make sense, you may do so, but only do this to ensure the sentence makes sense, do not change other words randomly. Overall, just ensure that no dynamic loc remains while trying to keep as faithfully to the original text as possible. FROM THE CONTEXT OF THE ENTIRE SENTENCE, DECIDE ON WETHER THE EVENT IS A COUNTRY OR A PROVINCE EVENT AND MAKE LOC REPLACEMENTS ACCORDINGLY.
+1. REPLACE ALL TAGS: Replace all dynamic variables (e.g., [Root.Monarch.GetName], `$COUNTRY`$, EVERYTHING between brackets or dollar signs) with generic, natural-sounding spoken words based on context. If you are unable to determine the context by reading the entire sentence, you can also remove the dynamic loc tag entirely, but only if the sentence still makes sense after the removal. If additional (non dynamic loc) words must be changed for the replacement word to make sense, you may do so, but only do this to ensure the sentence makes sense, do not change other words randomly. Overall, just ensure that no dynamic loc remains while trying to keep as faithfully to the original text as possible. FROM THE CONTEXT OF THE ENTIRE SENTENCE, DECIDE ON WETHER THE EVENT IS A COUNTRY OR A PROVINCE EVENT AND MAKE LOC REPLACEMENTS ACCORDINGLY.
 2. CONTEXTUAL RULES:
-   - Often the dynamic loc hints at what it is supposed to be via it's name, ie $ADM_Advisor$ would be our administrative advisor or [empire_of_china.GetAdjective] would be the adjective of whichever country currently holds the Mandate of Heaven, so a possible substitution that somewhat makes sense no matter the country could be "celestial". 
+   - Often the dynamic loc hints at what it is supposed to be via it's name, ie `$ADM_Advisor`$ would be our administrative advisor or [empire_of_china.GetAdjective] would be the adjective of whichever country currently holds the Mandate of Heaven, so a possible substitution that somewhat makes sense no matter the country could be "celestial". 
    - Locations: use "country", "province", "realm", or "domain".
    - Rulers/People: use "lord", "ruler", "monarch", "heir", or "advisor".
    - Pronouns: substitute with "they/their" where appropriate.
@@ -111,7 +115,7 @@ $ttsApiUrl = "http://127.0.0.1:7851/api/tts-generate"
 
 
 #=======================================================
-# Pre-Flight Hard Drive Scan
+# Script Code
 #=======================================================
 
 $csvData = Import-Csv -Path $csvFile -Delimiter ";"
