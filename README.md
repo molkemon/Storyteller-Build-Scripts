@@ -28,6 +28,7 @@ If you do not have available endpoints, or if you want a setup highly optimized 
 
 - Download or clone the entire repo. Put it wherever you like on your hard drive
 - You have 6 PowerShell scripts in this pipeline. To create a mod, you have to first setup the configuration blocks for all scripts, and then execute the scripts one after the other.
+  - For simplicity you can just update the configuration block of the first file and then copy paste the config to the other scripts, all scripts contain the entire config even though not all config paths are required for every script.
 - Only execute in PowerShell 7, one of the scripts absolutely requires it, and all of the scripts are way faster in 7.
   
 - For Script 2 you need an available LLM endpoint, for Script 3 you need a TTS endpoint. Setup on how to run those locally for free and highly optimized for speed are further below.
